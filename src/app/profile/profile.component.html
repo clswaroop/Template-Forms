@@ -1,0 +1,22 @@
+<div class="panel panel-primary">
+    <div class=" panel-heading">
+        Profile Page
+    </div>
+    <div class="panel-body">
+        <button class="btn btn-danger" (click)="logout()"> LogOut</button>
+        <div class="jumbotron">
+            <h1>Profile</h1>
+            <h1> Hi {{userInfo.name}}</h1>
+            <p> your role is{{userInfo.role}}</p>
+        </div>
+        <h2> you have permission to 
+            {{userInfo.role ==="Admin"?"can go to admin page":"View your profile"}}
+        </h2>
+        <div *ngIf ="userInfo.role ==='Admin'">
+            <button class ="btn btn-success"
+                [routerLink] = "['/admin']">
+                Admin
+            </button>
+        </div>
+    </div>
+</div>

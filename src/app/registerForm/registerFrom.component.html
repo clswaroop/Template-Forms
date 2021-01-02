@@ -1,0 +1,63 @@
+<h1>Om SaiRam</h1>
+<div class = "panel panel-primary">
+    <div class ="panel-heading">
+        Register Form
+    </div>
+    <div class="panel-body">
+        <form #formToSubmit="ngForm" (submit)="submitForm(formToSubmit)">
+
+            <!-- First Name -->
+            <div class = "form-group" [class.has-error]="targetFirstName.invalid">
+                <label class = "control-label">
+                    First Name
+                </label>
+                <input type="text" name="name" placeholder = "Enter First Name" class="form-control"
+                [ngModel]=myUser.name
+                (ngModelChange)="firstToUpper($event)"
+                required
+                #targetFirstName="ngModel"
+                />
+            </div>
+            <div class="alert alert-danger" *ngIf =targetFirstName.invalid>
+                *Required Field Missing
+            </div>
+
+             <!-- Email -- touched is true when i come out of the input-->
+             <div class = "form-group" [class.has-error]="targetEmail.invalid && targetEmail.touched">
+                <label class = "control-label">
+                    Email Id
+                </label>
+                <input type="text" name="email" placeholder = "Enter Valid Email" class="form-control"
+                [(ngModel)]=myUser.email
+                pattern="^([a-zA-Z0-9]+)@([a-zA-Z0-9]+)\.([a-zA-Z]{2,5})$"
+                #targetEmail="ngModel"
+                />
+            </div>
+            <div class="alert alert-danger" *ngIf ="targetEmail.invalid && targetEmail.touched">
+                *Email Id is not valid
+            </div>
+
+            <!-- password -->
+            <div class = "form-group" [class.has-error]="targetpwd.invalid && targetpwd.touched">
+                <label class = "control-label">
+                    password
+                </label>
+                <input type="password" name="password" placeholder = "choose password" class="form-control"
+                [(ngModel)]=myUser.password
+                required
+                minlength="5"
+                #targetpwd="ngModel"
+                />
+            </div>
+            <div class="alert alert-danger" *ngIf ="targetpwd.invalid && targetpwd.touched">
+                *please choose valid password
+            </div>
+
+            
+            <button type = "submit" class="btn btn-success">
+            <!-- Submit Form -->
+                Register
+            </button>
+        </form>
+    </div>
+</div>
